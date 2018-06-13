@@ -1,0 +1,14 @@
+{
+    "name": "zugor/adminlte-plus",
+    "description": "Generate basic admin panel with AdminLTE",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zugor",
+            "email": "heinhtutaung.hha.96@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {}
+}

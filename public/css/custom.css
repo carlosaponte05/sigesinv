@@ -1,0 +1,91 @@
+.auto-width{
+	width: auto;
+}
+.bg-grey-prism{
+  background: url('/images/grey-prism.svg');
+}
+.bold{
+	font-weight: bold;
+}
+.btn-table-row { 
+	display:table-row; 
+	cursor: pointer; 
+}
+.btn-box-tool > .fa {
+	font-size: 20px;
+	font-weight: bold;
+}
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+strong.form-control, 
+h3.form-control{
+  height: auto !important;
+}
+/*START OF EDITING MARGIN, PADDING*/
+.mg-right-5{
+  margin-right: 5px;
+}
+.mg-top-minus-10{
+	margin-top: -10px;
+}
+.mg-top-minus-5{
+	margin-top: -5px;
+}
+.mg-top-10{
+  margin-top: 10px;
+}
+.mg-bottom-minus-10{
+	margin-bottom: -10px;
+}
+.mg-tp-bt-10{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+/*.mg-tb-5{
+	margin-top: 5px !important;
+	margin-bottom: 5px !important;
+}*/
+.no-border{
+  border-style: none;
+}
+.no-margin{
+	margin: 0;
+}
+.no-margin-bt{
+  margin-bottom: 0;
+}
+.no-padding{
+  padding: 0;
+}
+/* END OF EDITING MARGIN, PADDING*/
+
+/*.btn-table-row:active{ outline:none }
+.table { display:table; }
+.table-row { display:table-row; }
+.table-header-cell{ display: table-row; font-size: 15px; font-weight: bold; }
+.table-cell { display:table-cell; }*/
+/*.btn > td:not(.text-center){text-align: left;}*/
+/*.btn > td .text-center{text-align: center;}*/
