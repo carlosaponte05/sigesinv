@@ -138,11 +138,15 @@ class RegisterController extends Controller
             'password' => $clave_nueva
         ];
         $user2 = \Sentinel::update($user2, $credentials);
-
-            Alert::success('Contraseña Cambiada', $clave_nueva)->persistent("éxito");
+        //-----registrando en el historial----
+        $this->logsOther($user2->id, "Usuarios","Cambio de contraseña", "Satisfactoria");
+        //-------------------------
+            Alert::success('Contraseña Cambiada', $clave_nueva)->persistent("Éxito");
         return redirect()->to("/");
         }else{
-            dd("no");
-        }
+            //-----registrando en el historial----
+        $this->logsOther($user->id, "Usuarios","Cambio de contraseña", "error");
+        //-------------------------
+            Alert::success('Respuesta secreta incorrecta', 'verifique la pregunta secreta')->persistent("Error");        }
     }
 }

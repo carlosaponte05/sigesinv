@@ -28,6 +28,7 @@ class LoginController extends Controller
               if (count($buscar)>0) {
                 $email=$buscar->email;
               } else {
+                
                 Alert::error('Error al iniciar sesión!', 'Login')->persistent("Reintentar");
                    return redirect()->to("admin/login");
               }
@@ -47,7 +48,7 @@ class LoginController extends Controller
            if (empty($remember)) {
                $user = \Sentinel::authenticate($credentials);
                //dd($user);
-
+               
                if(!$user) {
                    Alert::error('Error al iniciar sesión!', 'Login')->persistent("Reintentar");
                    return redirect()->to("admin/login");

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Alert;
 use App\User;
-
+use App\Binnacle;
 class UserController extends Controller 
 {
     public function __construct(){
@@ -23,11 +23,16 @@ class UserController extends Controller
      */
     public function index()
     {
+        $bin=new Binnacle();
         $users = \Sentinel::getUserRepository()->get()->sortBy('first_name');
         $roles = \Sentinel::getRoleRepository()->get()->sortBy('name');
         // dd($roles->last()->name);
         $current_user = \Sentinel::check();
-
+        $user=\Sentinel::getUser();
+        //-----registrando en el historial----
+        $this->logsShow($user->id, "Usuarios", "Satisfactoria");
+        //-------------------------
+        
         $row_number = 1;
         return view('admin.user.index',compact('users', 'row_number', 'roles', 'current_user'));
     }
@@ -93,6 +98,9 @@ class UserController extends Controller
        // $activation = \Activation::create($user);
 
        //Mail::to($user->email, $user->first_name)->send(new UserActivation($activation->code));
+        //-----registrando en el historial----
+        $this->logsCreate($user->id, "Usuarios", "Registro");
+        //-------------------------
        return redirect()->back()->with('success', 'Registered! Please check email for activation.');
     }
 
@@ -108,6 +116,9 @@ class UserController extends Controller
         $roles = \Sentinel::getRoleRepository($user)->get()->sortBy('name');
         //$roles = \DB::table('role_users','roles')->where('role_users.user_id',$id)->where('roles.id','role_users.role_id')->get();
         //dd($roles);
+        //-----registrando en el historial----
+        $this->logsShow($user->id, "Usuarios", "Satisfactoria");
+        //-------------------------
         return view('admin.user.show', compact('user', 'roles'));
     }
 
@@ -117,6 +128,9 @@ class UserController extends Controller
         $roles = \Sentinel::getRoleRepository($user)->get()->sortBy('name');
         //$roles = \DB::table('role_users','roles')->where('role_users.user_id',$id)->where('roles.id','role_users.role_id')->get();
         //dd($roles);
+        //-----registrando en el historial----
+        $this->logsShow($user->id, "Usuarios(Perfil)", "Satisfactoria");
+        //-------------------------
         return view('admin.user.profile', compact('user', 'roles'));
     }
 
@@ -219,8 +233,14 @@ class UserController extends Controller
 
         $activations=\DB::table('activations')->where('user_id',$id)->first();
         \Activation::complete($user, $activations->code);    
+        //-----registrando en el historial----
+        $this->logsUpdate($user->id, "Usuarios", "Satisfactoria");
+        //-------------------------
         return redirect()->to('admin/user/'.$id.'/show')->with('success', 'Usuario Actualizado y Cuenta Activa!');
         }else{
+            //-----registrando en el historial----
+        $this->logsUpdate($user->id, "Usuarios", "Satisfactoria");
+        //-------------------------
             return redirect()->to('admin/user/'.$id.'/show')->with('success', 'Usuario Actualizado!');
         }
 
@@ -238,7 +258,9 @@ class UserController extends Controller
         $user = \Sentinel::findUserById($id);
 
         $user->delete();
-        
+        //-----registrando en el historial----
+        $this->logsDelete($user->id, "Usuarios", "Satisfactoria");
+        //-------------------------
          return redirect()->back();
     }
 
