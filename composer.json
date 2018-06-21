@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=7.1.16",
+        "php": ">=7.0.30",
         "laravel/framework": "5.3.*",
         "cartalyst/sentinel": "2.0.*",
         "laravel/socialite": "^2.0",
