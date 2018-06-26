@@ -50,4 +50,4 @@ Route::get('admin/setting', 'Admin\SettingController@index');
 Route::post('admin/setting/save', 'Admin\SettingController@save');
 
 
-Route::get('admin/binnacle','Admin\BinnacleController@index');
+Route::get('admin/binnacle','BinnacleController@index');

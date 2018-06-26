@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SysTest1 | Registro</title>
+  <title>SIGESINV | Registro</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -27,11 +27,11 @@
 <body class="hold-transition register-page">
   <div class="register-box">
     <div class="register-logo">
-      <a href="AdminLTE-2.3.11/index2.html"><b>Sys</b>Test1</a>
+      <a href="AdminLTE-2.3.11/index2.html"><b>SIGES</b>INV</a>
     </div>
 
     <div class="register-box-body">
-      <p class="login-box-msg">Registro de Nuevo Miembro</p>
+      <p class="login-box-msg">Registro de Nuevo Usuario</p>
 
       <form action="{{ url('user/register/') }}" method="POST">
 

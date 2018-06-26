@@ -3,7 +3,7 @@
 @section('content')
   <div class="login-box">
     <div class="login-logo">
-      <a href="AdminLTE-2.3.11/index2.html"><b>Sys</b>Test1</a>
+      <a href="AdminLTE-2.3.11/index2.html"><b>SIGES</b>INV</a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
@@ -41,18 +41,18 @@
          <!-- /.col -->
        </div>
      </form>
-
+<!-- 
       <div class="social-auth-links text-center">
       <p>- O -</p>
       <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Accede usando
         Facebook</a>
         <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Accede usando
           Google+</a>
-      </div> 
+      </div> --> 
         <!-- /.social-auth-links -->
 
         <a href="{{ url('user/confirm_email') }}">Olvidé mi clave</a><br>
-        <a href="{{ url('user/register') }}" class="text-center">Registrar nuevo miembro</a>
+        <a href="{{ url('user/register') }}" class="text-center">Registrar nuevo usuario</a>
 
       </div>
       <!-- /.login-box-body -->

@@ -12,10 +12,10 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         \DB::table('users')->insert([
-            'email'      => 'cesar@gmail.com',
+            'email'      => 'carlosaponte@gmail.com',
             'password'   => bcrypt('123456'),
-            'first_name' => 'CESAR',
-            'last_name'  => 'CHARACO',
+            'first_name' => 'CARLOS',
+            'last_name'  => 'APONTE',
             'secret_question' => 'Nombre de mi perro',
             'secret_answer' => bcrypt('scooby')
         ]);
@@ -28,6 +28,24 @@ class UsersTableSeeder extends Seeder
         ]);
         \DB::table('activations')->insert([
             'user_id'   => 1,
+            'code'      => 'FMslNOp94SjdZ167mNqHRngR1Ex87a4V',
+            'completed' => 1
+        ]);
+        //---------------------------------------------------------
+        \DB::table('users')->insert([
+            'email'      => 'saul@gmail.com',
+            'password'   => bcrypt('123456'),
+            'first_name' => 'SAUL',
+            'last_name'  => 'MORA',
+            'secret_question' => 'Nombre de mi perro',
+            'secret_answer' => bcrypt('scooby')
+        ]);
+        \DB::table('role_users')->insert([
+            'user_id' => 2,
+            'role_id' => 2
+        ]);
+        \DB::table('activations')->insert([
+            'user_id'   => 2,
             'code'      => 'FMslNOp94SjdZ167mNqHRngR1Ex87a4V',
             'completed' => 1
         ]);
