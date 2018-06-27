@@ -29,7 +29,7 @@
                     <!-- Responsive navbar -->
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                 </a>
-                    <h1 class="brand">Copy Rapid Express C.A.</h1>
+                    <h1 class="brand">Ejemplo</h1>
                     <!-- navigation -->
                     <nav class="pull-right nav-collapse collapse">
                         <ul id="menu-main" class="nav">
