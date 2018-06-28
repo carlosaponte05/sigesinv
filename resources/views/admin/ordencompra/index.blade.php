@@ -95,9 +95,7 @@
                               <br>
                               @if(\Sentinel::getUser()->roles()->first()->hasAccess(['orden_compra.view'])==1)
                                 {{ csrf_field() }}
-                                <button class="btn btn-circle btn-danger btnDelete" title="Delete">
-                                  <i class="fa fa-remove"></i>
-                                </button>
+                                
                                 <div class="form-group">
                                   <a class="btn btn-circle btn-info" href='{{ url('/admin/orden_compra/'.$key->id.'/show') }}'" title="Ver">
                                     <i class="fa fa-eye"></i>
@@ -108,6 +106,9 @@
                           @endif
 
                           @if (\Sentinel::getUser()->roles()->first()->hasAccess(['orden_compra.delete'])==1 && $key->estado=="Sin Aprobar")
+                          <button class="btn btn-circle btn-danger btnDelete" title="Delete">
+                                  <i class="fa fa-remove"></i>
+                                </button>
                             <div class="form-group">
                               <form class="form frmDelete" id="Form" role="form" method="POST" 
                               action="{{ url('admin/orden_compra/'. $key->id) }}">

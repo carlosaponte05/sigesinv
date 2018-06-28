@@ -145,4 +145,23 @@ class OrdenCompraController extends Controller
 
 
     }
+
+    public function ejecutar($id)
+    {
+        $ordenc=OrdenCompra::find($id);
+
+        $ordenc->estado="Ejecutada";
+
+        $ordenc->save();
+
+        foreach ($ordenc->materialescompra as $key) {
+            $material=Materiales::find($key->id_material);
+            $material->existencia=$material->existencia+$key->cantidad;
+            $material->save();
+        }
+
+        return redirect()->back()->with('success', 'Orden de Compra fué Ejecutada exitosamente, y actualizado el inventario!');
+
+
+    }
 }

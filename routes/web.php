@@ -61,4 +61,4 @@ Route::post('admin/orden_compra/materiales',['as' => 'admin.orden_compra.materia
 Route::post('admin.orden_compra.store',['as' => 'admin.orden_compra.store', 'uses' => 'OrdenCompraController@store']);
 Route::get('admin/orden_compra/{id}/show',['as' => 'admin.orden_compra.show', 'uses' => 'OrdenCompraController@show']);
 Route::get('admin/orden_compra/{id}/aprobar',['as' => 'admin.orden_compra.aprobar', 'uses' => 'OrdenCompraController@aprobar']);
-Route::get('admin/orden_compra/{id}/ejecutar',['as' => 'admin.orden_compra.aprobar', 'uses' => 'OrdenCompraController@ejecutar']);
+Route::get('admin/orden_compra/{id}/ejecutar',['as' => 'admin.orden_compra.ejecutar', 'uses' => 'OrdenCompraController@ejecutar']);
