@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
             'first_name' => 'CARLOS',
             'last_name'  => 'APONTE',
             'secret_question' => 'Nombre de mi perro',
-            'secret_answer' => bcrypt('scooby')
+            'secret_answer' => 'scooby'
         ]);
         \DB::table('role_users')->insert([
             'user_id' => 1,
@@ -38,7 +38,7 @@ class UsersTableSeeder extends Seeder
             'first_name' => 'TATIANA',
             'last_name'  => 'BUENDIA',
             'secret_question' => 'Nombre de mi perro',
-            'secret_answer' => bcrypt('scooby')
+            'secret_answer' => 'scooby'
         ]);
         \DB::table('role_users')->insert([
             'user_id' => 2,
@@ -56,7 +56,7 @@ class UsersTableSeeder extends Seeder
             'first_name' => 'SAUL',
             'last_name'  => 'MORA',
             'secret_question' => 'Nombre de mi perro',
-            'secret_answer' => bcrypt('scooby')
+            'secret_answer' => 'scooby'
         ]);
         \DB::table('role_users')->insert([
             'user_id' => 3,

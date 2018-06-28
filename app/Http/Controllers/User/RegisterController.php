@@ -115,6 +115,13 @@ class RegisterController extends Controller
     {
         
         $user=User::where('email',$request->Email)->first();
+        if (count($user)>0) {
+            $pregunta=$user->secret_question;
+        $user_id=$user->id;
+        return view('user.forgot',compact('pregunta','user_id'));
+        } else {
+            return redirect()->back()->with('error', 'El correo no se encuentra registrado!');
+        }
         
         $pregunta=$user->secret_question;
         $user_id=$user->id;
@@ -124,29 +131,38 @@ class RegisterController extends Controller
     public function confirmar(Request $request)
     {
         $user=User::find($request->user_id);
+        //dd($user->secret_answer);
         if($user->secret_answer==$request->secret_answer){
             //generando clave aleatoria
+
              $key = '';
              $pattern = '1234567890abcdefghijklmnopqrstuvwxyz';
              $max = strlen($pattern)-1;
              for($i=0;$i < 10;$i++) $key .= $pattern{mt_rand(0,$max)};
              
         $user2 = \Sentinel::findUserById($request->user_id);
+
         // dd($user2);
         $clave_nueva=$key;
         $credentials=[
             'password' => $clave_nueva
         ];
         $user2 = \Sentinel::update($user2, $credentials);
+
         //-----registrando en el historial----
         $this->logsOther($user2->id, "Usuarios","Cambio de contraseña", "Satisfactoria");
         //-------------------------
-            Alert::success('Contraseña Cambiada', $clave_nueva)->persistent("Éxito");
-        return redirect()->to("/");
+            return redirect()->to('admin/login')->with('success', 'Contraseña Cambiada, '.$clave_nueva);
+            //Alert::success('Contraseña cambiada', 'guarde la nueva clave: '.$clave_nueva)->persistent("Éxito");
+            //dd("sasas");
+        
         }else{
+
             //-----registrando en el historial----
         $this->logsOther($user->id, "Usuarios","Cambio de contraseña", "error");
         //-------------------------
-            Alert::success('Respuesta secreta incorrecta', 'verifique la pregunta secreta')->persistent("Error");        }
+            return redirect()->to('admin/login')->with('error', 'Contraseña no Cambiada, verifique bien su respuesta secreta ');
+                    
+        }
     }
 }
