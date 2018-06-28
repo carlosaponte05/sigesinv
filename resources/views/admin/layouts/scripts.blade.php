@@ -43,3 +43,9 @@
 <script src="{{ asset('AdminLTE-2.3.11/dist/js/app.min.js') }}"></script>
 {{-- SweetALert --}}
 <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+<script src="{{ asset('js/select2.min.js') }}"></script>
+<script type="text/javascript">
+  //Initialize Select2 Elements
+    $('.select2').select2()
+   
+</script>

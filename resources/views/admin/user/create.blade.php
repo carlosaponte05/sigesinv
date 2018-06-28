@@ -91,9 +91,7 @@
                   @endif
                 </div>
               </div>
-
               <hr>
-
               <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                 <label class="control-label col-sm-2" for="password_confirmation">Confirmar Contraseña</label>
                 <div class="col-sm-10">
@@ -105,6 +103,28 @@
               </div>
 
               <hr>
+              <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                <label class="control-label col-sm-2" for="secret_question">Pregunta Secreta</label>
+                <div class="col-sm-10">
+                  <input name="secret_question" type="text" class="form-control" placeholder="Pregunta Secreta">
+                  @if($errors->has("secret_question"))
+                  <span class="text-danger">{{ $errors->first("secret_question")}}</span>  
+                  @endif
+                </div>
+              </div>
+              <hr>
+              <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                <label class="control-label col-sm-2" for="secret_answer">Respuesta Secreta</label>
+                <div class="col-sm-10">
+                  <input name="secret_answer" type="password" class="form-control" placeholder="Respuesta Secreta">
+                  @if($errors->has("secret_answer"))
+                  <span class="text-danger">{{ $errors->first("secret_answer")}}</span>  
+                  @endif
+                </div>
+              </div>
+              <hr>
+
+
 
               <div class="form-group">
                <label for="Roles" class="col-sm-2 control-label">Dar Roles</label>

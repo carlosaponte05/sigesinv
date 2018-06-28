@@ -1,7 +1,7 @@
 @extends('admin.index')
 
 @section('sub-title')
-<title>Usuarios | Escritorio</title>
+<title>Materiales | Escritorio</title>
 @endsection
 
 @section('css')
@@ -18,9 +18,9 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Acerca de los usuarios para administrar.
+      Acerca de los materiales para administrar.
     </h1>
-
+ 
   </section>
   <!-- Main content -->
   <section class="content">
@@ -28,7 +28,7 @@
       <div class="col-lg-12">
         <div class="box box-info">
           <div class="box-header with-border">
-            <h3 class="box-title">Lista de todos los Usuarios</h3><small>  Click para ver más información.</small>
+            <h3 class="box-title">Lista de todos los Materiales</h3><small>  Click para ver más información.</small>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
@@ -37,9 +37,14 @@
                 <thead>
                   <tr>
                     <th class="col-md-1">#</th>
-                    <th class="col-md-2">Nombre de Usuario</th>
-                    <th class="col-md-3">Correo</th>
-                    <th class="col-md-3">Roles</th>
+                    <th class="col-md-2">Nombre</th>
+                    <th class="col-md-3">Características</th>
+                    <th class="col-md-2">Existencia</th>
+                    <th class="col-md-2">Und</th>
+                    <th class="col-md-2">Precio Ind.</th>
+                    <th class="col-md-2">Precio Und.</th>
+                    <th class="col-md-2">Stock Min</th>
+                    <th class="col-md-2">Stock Max</th>
                     <th class="text-center col-md-3">
                       <p>Acción</p>
                     </th>
@@ -47,41 +52,33 @@
                 </thead>
 
                 <tbody>
-                  @foreach ($users as $user)
+                  @foreach ($materiales as $key)
 
-                  <tr class="btn-table-row" onclick="location.href='{{ url('admin/user/'.$user->id.'/show') }}'" 
+                  <tr class="btn-table-row" onclick="location.href='{{ url('admin/materiales/'.$key->id.'/show') }}'" 
                     title="Click to see more">
                     <th class="col-md-1" scope="row">{{ $row_number }}.</th>
-                    <td class="col-md-2">{{ $user->first_name}} 
-                      @php
-                      echo ((isGod($user->id)) ? "<span class='label label-info'> SuperUsuario</label>" : '' );
-                      @endphp
+                    <td class="col-md-2">{{ $key->nombre}} 
                     </td>
-                    <td class="col-md-3">{{ $user->email }}</td>
-                    <td class="col-md-3">
-                      @if (isGod($user->id))
-                      <strong><p class="text-info">Este usuario tiene acceso total.</p></strong>
-                      @else
-                      @foreach ($roles as $role)
-                      @if($user->inRole($role->slug))
-                      @php $and = (($role->name == $roles->last()->name) ? '' : ' &') @endphp
-                      {{ $role->name . $and }}
-                      @endif 
-                      @endforeach
-                      @endif</td>
-                      <td class="text-center col-md-3" style="display: inline;">
+                    <td class="col-md-3">{{ $key->caracteristica }}</td>
+                    <td class="col-md-2">{{ $key->existencia }}</td>
+                    <td class="col-md-2">{{ $key->unidad }}</td>
+                    <td class="col-md-2">{{ $key->precio_ind }}</td>
+                    <td class="col-md-2">{{ $key->precio_und }}</td>
+                    <td class="col-md-2">{{ $key->stock_min }}</td>
+                    <td class="col-md-2">{{ $key->stock_max }}</td>
+                    <td class="text-center col-md-3" style="display: inline;">
                         <div class="form-inline">
-                          @if (\Sentinel::getUser()->roles()->first()->hasAccess(['user.update'])==1 || \Sentinel::getUser()->first_name==$user->first_name)
+                          @if (\Sentinel::getUser()->roles()->first()->hasAccess(['materiales.update'])==1)
                           <div class="form-group">
-                            <a class="btn btn-circle btn-primary" href='{{ url('/admin/user/'.$user->id.'/edit') }}'" title="Edit">
+                            <a class="btn btn-circle btn-primary" href='{{ url('/admin/materiales/'.$key->id.'/edit') }}'" title="Edit">
                               <i class="fa fa-edit"></i>
                             </a>
                           </div>
                           @endif
-                          @if (\Sentinel::getUser()->roles()->first()->hasAccess(['user.delete'])==1)
+                          @if (\Sentinel::getUser()->roles()->first()->hasAccess(['materiales.delete'])==1)
                             <div class="form-group">
                               <form class="form frmDelete" id="Form" role="form" method="POST" 
-                              action="{{ url('admin/user/'. $user->id) }}">
+                              action="{{ url('admin/materiales/'. $key->id) }}">
                                 <input type="hidden" name="_method" value="delete">
 
                                 {{ csrf_field() }}
@@ -89,7 +86,7 @@
                                   <i class="fa fa-remove"></i>
                                 </button>
                                 <div class="form-group">
-                                  <a class="btn btn-circle btn-info" href='{{ url('/admin/user/'.$user->id.'/show') }}'" title="Ver">
+                                  <a class="btn btn-circle btn-info" href='{{ url('/admin/materiales/'.$key->id.'/show') }}'" title="Ver">
                                     <i class="fa fa-eye"></i>
                                   </a>
                                 </div>
@@ -143,7 +140,7 @@
     var self = $(this);
     swal({
       title             : "Estas seguro que quieres borrarlo?",
-      text              : "No podrá recuperar este usuario y los datos relacionados!",
+      text              : "No podrá recuperar este material y los datos relacionados!",
       type              : "warning",
       showCancelButton  : true,
       confirmButtonColor: "#DD6B55",
@@ -164,7 +161,7 @@
       }
     
       else{
-        swal("Cancelado!","Usuario seguro", "error");
+        swal("Cancelado!","Material seguro", "error");
       }
     });
   });

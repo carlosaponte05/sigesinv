@@ -1,6 +1,6 @@
 <?php 
 return [
-	'theme-colors' => 'skin-red'
+	'theme-colors' => 'skin-blue'
 
 ]
 

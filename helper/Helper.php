@@ -19,7 +19,7 @@ function cbPermGetter($type){
 	$maker = '<div class="col-md-2 mg-right-5">
 					<div class="row">
 						<div class="col-md-12">
-							<strong class="col-md-offset-1">For '.ucfirst($type).'</strong>
+							<strong class="col-md-offset-1">Para '.ucfirst($type).'</strong>
 							<div class="container mg-top-10 mg-bottom-minus-10">';
 
 	foreach ($permissions as $permission => $value) {
@@ -39,11 +39,12 @@ function cbPermGetter($type){
 	echo $maker;
 }
 function checkBoxes($type,$var_class,$col){
-	$permissions[]= array('{"user.create":true,"user.update":true,"user.delete":true,"user.view":true,"post.create":true,"post.update":true,"post.delete":true,"post.view":true}');
+	$permissions= getPermissions2($type);
+	//dd($permissions);
 	$maker = '<div class="col-md-2 mg-right-5">
 					<div class="row">
 						<div class="col-md-12">
-							<strong class="col-md-offset-1">For '.ucfirst($type).'</strong>
+							<strong class="col-md-offset-1">Para '.ucfirst($type).'</strong>
 							<div class="container mg-top-10 mg-bottom-minus-10">';
 
 	foreach ($permissions as $permission => $value) {
@@ -53,15 +54,16 @@ function checkBoxes($type,$var_class,$col){
 							<label>
 								<input type='checkbox' name='".$type."[]' value=".$permission." ".$checked.">".ucfirst($permission)."
 							</label>
-						</div><br>";*/
-
-		$maker .= "<div class='checkbox-inline ".$var_class." ".$col."'><label><input type='checkbox' name='".$type."[]' value=".$permission." ".$checked.">".ucfirst($permission)."</label></div>";
+						</div><br>";
+*/
+		 $maker .= "<div class='checkbox-inline ".$var_class." ".$col."'><label><input type='checkbox' name='".$type."[]' value=".$permission." ".$checked.">".ucfirst($permission)."</label></div>";
 	}
 
 	$maker .= '</div></div></div></div>';
 	
 	echo $maker;
 }
+
 
 function storeRole($var_roleName, $var_types, $var_checked, $description){
 
@@ -109,8 +111,9 @@ function updateUserRoles($user, $arr_roles){
 }
 function setUserRoles($user, $arr_roles){
 
-	$roles = \Sentinel::getRoles();
-
+	$roles = \Sentinel::getRoleRepository()->all();
+	//$roles=\DB::table('roles')->get();
+	//dd($roles);
 	foreach ($roles as $role) {
 		if (in_array($role->slug, $arr_roles)) {
 			$role->users()->attach($user);
@@ -158,6 +161,13 @@ function getPermissions($type){
 	// $allPermissions = include realpath(base_path('helper/permissions.php'));
 	// $permissions = ( (empty($type)) ? $allPermissions : $allPermissions[$type] );
 	$permissions = config('as_permissions.'.$type);
+	return $permissions;
+}
+function getPermissions2($type){
+	 $allPermissions = include realpath(base_path('helper/permissions.php'));
+	 //dd($allPermissions);
+	 $permissions = ( (empty($type)) ? $allPermissions : $allPermissions[$type] );
+	//$permissions = config('as_permissions.'.$type);
 	return $permissions;
 }
 function arrFillNull($arr){

@@ -71,7 +71,8 @@ class UserController extends Controller
         
 
         $Roles = $request->input("Roles");
-
+        /*$role = \Sentinel::findRoleById($request->Roles);
+        dd($role);*/
         $credentials = [
            'first_name'    => $request->input("Username"),
            'email'         => $request->input("Email"),
@@ -84,6 +85,7 @@ class UserController extends Controller
         if($request->input('activate') == 'activate'){
             $user = \Sentinel::registerAndActivate($credentials);
             setUserRoles($user, $Roles);
+            //$role->users()->attach($user);
 
             return redirect()->back()->with('success', 'Nuevo usuario registrado y activado!');
 
@@ -92,6 +94,7 @@ class UserController extends Controller
             $activation = \Activation::create($user);
 
             setUserRoles($user, $Roles);
+            //$role->users()->attach($user);
             return redirect()->back()->with('success', 'Nuevo usuario registrado!');
         }
        // $user = \Sentinel::register($credentials);

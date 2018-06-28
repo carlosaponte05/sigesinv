@@ -34,7 +34,8 @@
   <!-- sidebar menu: : style can be found in sidebar.less -->
   <ul class="sidebar-menu">
     <li class="header">NAVEGACIÓN PRINCIPAL</li>
-    @if (\Sentinel::getRoles(['user.view'])) 
+    <!-- \Sentinel::getUser()->roles()->first()->hasAccess(['user.create']) -->
+    @if (\Sentinel::getUser()->roles()->first()->hasAccess(['user.view'])==1) 
     <li class="treeview {{ Request::is('admin/user*') ? 'active':'' }}">
       <a href="#">
         <i class="fa fa-users"></i> <span>Usuarios</span>
@@ -43,18 +44,86 @@
         </span>
       </a>
       <ul class="treeview-menu">
-         @if (\Sentinel::getRoles(['user.view'])) 
+         @if (\Sentinel::getUser()->roles()->first()->hasAccess(['user.view'])==1) 
           <li class="{{ Request::is('admin/user') ? 'active':'' }}"><a href="{{ url('admin/user') }}"><i class="fa fa-users"></i>Listar</a></li>
          @endif 
 
-         @if (\Sentinel::getRoles(['user.create'])) 
+         @if (\Sentinel::getUser()->roles()->first()->hasAccess(['user.create'])==1) 
           <li class="{{ Request::is('admin/user/create') ? 'active':'' }}"><a href="{{ url('admin/user/create') }}"><i class="fa fa-user-plus"></i>Agregar Nuevo Usuario</a></li>
          @endif 
         <li class="{{ Request::is('admin/user/profile') ? 'active':'' }}"><a href="{{ url('admin/user/'.\Sentinel::check()->id.'/profile') }}"><i class="fa fa-user-circle-o"></i>Tu Perfil</a></li>
       </ul>
     </li>
      @endif 
+<!-- Materiales -->
+@if (\Sentinel::getUser()->roles()->first()->hasAccess(['materiales.view'])) 
+    <li class="treeview {{ Request::is('admin/materiales*') ? 'active':'' }}">
+      <a href="#">
+        <i class="fa fa-users"></i> <span>Materiales</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      </a>
+      <ul class="treeview-menu">
+         @if (\Sentinel::getUser()->roles()->first()->hasAccess(['materiales.view'])==1) 
+          <li class="{{ Request::is('admin/materiales') ? 'active':'' }}"><a href="{{ url('admin/materiales') }}"><i class="fa fa-users"></i>Listar</a></li>
+         @endif 
 
+         @if (\Sentinel::getUser()->roles()->first()->hasAccess(['materiales.create'])==1) 
+          <li class="{{ Request::is('admin/materiales/create') ? 'active':'' }}"><a href="{{ url('admin/materiales/create') }}"><i class="fa fa-user-plus"></i>Agregar Nuevo Material</a></li>
+         @endif 
+        
+      </ul>
+    </li>
+     @endif 
+
+<!-- fin materiales-->
+<!-- Proveedores -->
+@if (\Sentinel::getUser()->roles()->first()->hasAccess(['proveedores.view'])) 
+    <li class="treeview {{ Request::is('admin/proveedores*') ? 'active':'' }}">
+      <a href="#">
+        <i class="fa fa-users"></i> <span>Proveedores</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      </a>
+      <ul class="treeview-menu">
+         @if (\Sentinel::getUser()->roles()->first()->hasAccess(['proveedores.view'])==1) 
+          <li class="{{ Request::is('admin/proveedores') ? 'active':'' }}"><a href="{{ url('admin/proveedores') }}"><i class="fa fa-users"></i>Listar</a></li>
+         @endif 
+
+         @if (\Sentinel::getUser()->roles()->first()->hasAccess(['proveedores.create'])==1) 
+          <li class="{{ Request::is('admin/proveedores/create') ? 'active':'' }}"><a href="{{ url('admin/proveedores/create') }}"><i class="fa fa-user-plus"></i>Agregar Nuevo Proveedore</a></li>
+         @endif 
+        
+      </ul>
+    </li>
+     @endif 
+
+<!-- fin proveedores-->
+<!-- Ordenes de Compra -->
+@if (\Sentinel::getUser()->roles()->first()->hasAccess(['orden_compra.view'])) 
+    <li class="treeview {{ Request::is('admin/orden_compra*') ? 'active':'' }}">
+      <a href="#">
+        <i class="fa fa-users"></i> <span>Orden de Compra</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      </a>
+      <ul class="treeview-menu">
+         @if (\Sentinel::getUser()->roles()->first()->hasAccess(['orden_compra.view'])==1) 
+          <li class="{{ Request::is('admin/orden_compra/lista') ? 'active':'' }}"><a href="{{ url('admin/orden_compra/lista') }}"><i class="fa fa-users"></i>Listar</a></li>
+         @endif 
+
+         @if (\Sentinel::getUser()->roles()->first()->hasAccess(['materiales.create'])==1) 
+          <li class="{{ Request::is('admin/orden_compra/create') ? 'active':'' }}"><a href="{{ url('admin/orden_compra/create') }}"><i class="fa fa-user-plus"></i>Crear Orden</a></li>
+         @endif 
+        
+      </ul>
+    </li>
+     @endif 
+
+<!-- fin orden de compra-->
     @if (isGod(\Sentinel::check()->id)) 
     <li class="treeview {{ Request::is('admin/role*') ? 'active':'' }}">
       <a href="#">

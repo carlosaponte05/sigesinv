@@ -51,3 +51,14 @@ Route::post('admin/setting/save', 'Admin\SettingController@save');
 
 
 Route::get('admin/binnacle','BinnacleController@index');
+
+Route::resource('admin/materiales','MaterialesController');
+Route::resource('admin/proveedores','ProveedoresController');
+//ORDENES DE COMPRA
+Route::get('admin/orden_compra/lista',['as' => 'admin.orden_compra', 'uses' => 'OrdenCompraController@index']);
+Route::get('admin/orden_compra/create',['as' => 'admin.orden_compra.create', 'uses' => 'OrdenCompraController@create']);
+Route::post('admin/orden_compra/materiales',['as' => 'admin.orden_compra.materiales', 'uses' => 'OrdenCompraController@buscarMateriales']);
+Route::post('admin.orden_compra.store',['as' => 'admin.orden_compra.store', 'uses' => 'OrdenCompraController@store']);
+Route::get('admin/orden_compra/{id}/show',['as' => 'admin.orden_compra.show', 'uses' => 'OrdenCompraController@show']);
+Route::get('admin/orden_compra/{id}/aprobar',['as' => 'admin.orden_compra.aprobar', 'uses' => 'OrdenCompraController@aprobar']);
+Route::get('admin/orden_compra/{id}/ejecutar',['as' => 'admin.orden_compra.aprobar', 'uses' => 'OrdenCompraController@ejecutar']);

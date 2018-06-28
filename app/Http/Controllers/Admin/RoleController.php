@@ -22,7 +22,7 @@ class RoleController extends Controller
         // $roles = \Sentinel::getRoleRepository()->ofType('watcher')->get();
         // dd($roles);
 
-        $roles = \Sentinel::getRoles()->sortBy('name');
+        $roles = \Sentinel::getRoleRepository()->all();
         $row_number = 1; //to loop row number of table
         return view('admin.role.index', compact(['roles', 'row_number']));
 

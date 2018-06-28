@@ -67,9 +67,9 @@
               <div class="col-sm-10">
                 <h3 class="form-control no-border no-margin">
                   @foreach ($roles as $role)
-                  {{-- @if ($user->inRole($role->slug)) --}}
+                   @if ($user->inRole($role->slug)) 
                   <span class="label label-info">{{$role->name}}</span>
-                  {{-- @endif --}}
+                  @endif 
                   @endforeach
                 </h3>
               </div>

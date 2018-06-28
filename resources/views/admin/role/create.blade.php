@@ -70,7 +70,7 @@
                   <div class="container mg-top-10">
                     {{cbPermGetter('user')}}
                     {{-- {{cbPermGetter('post')}} --}}
-                    
+                    {{-- {{ checkBoxes('materiales','col-md',5) }} --}}
                   </div>
                   {{-- <div class="panel panel-default" id="cbContainer">
                     <div class="panel-heading" style="margin-top: -5px;"><strong>Para Usuario</strong></div>

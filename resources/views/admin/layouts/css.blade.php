@@ -38,3 +38,4 @@ html{
 		padding: 10px;
 	}*/
 </style>
+<link rel="stylesheet" type="text/css" href="{{ asset('css/select2.min.css') }}">
