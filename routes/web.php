@@ -62,3 +62,12 @@ Route::post('admin.orden_compra.store',['as' => 'admin.orden_compra.store', 'use
 Route::get('admin/orden_compra/{id}/show',['as' => 'admin.orden_compra.show', 'uses' => 'OrdenCompraController@show']);
 Route::get('admin/orden_compra/{id}/aprobar',['as' => 'admin.orden_compra.aprobar', 'uses' => 'OrdenCompraController@aprobar']);
 Route::get('admin/orden_compra/{id}/ejecutar',['as' => 'admin.orden_compra.ejecutar', 'uses' => 'OrdenCompraController@ejecutar']);
+//ORDENES DE PEDIDO
+Route::get('admin/orden_pedido/lista',['as' => 'admin.orden_pedido', 'uses' => 'OrdenPedidoController@index']);
+Route::get('admin/orden_pedido/create',['as' => 'admin.orden_pedido.create', 'uses' => 'OrdenPedidoController@create']);
+Route::post('admin/orden_pedido/materiales',['as' => 'admin.orden_pedido.materiales', 'uses' => 'OrdenPedidoController@buscarMateriales']);
+Route::post('admin.orden_pedido.store',['as' => 'admin.orden_pedido.store', 'uses' => 'OrdenPedidoController@store']);
+Route::get('admin/orden_pedido/{id}/show',['as' => 'admin.orden_pedido.show', 'uses' => 'OrdenPedidoController@show']);
+Route::get('admin/orden_pedido/{id}/aprobar',['as' => 'admin.orden_pedido.aprobar', 'uses' => 'OrdenPedidoController@aprobar']);
+Route::get('admin/orden_pedido/{id}/ejecutar',['as' => 'admin.orden_pedido.ejecutar', 'uses' => 'OrdenPedidoController@ejecutar']);
+Route::post('admin/orden_pedido/{id}',['as' => 'admin.orden_pedido.delete', 'uses' => 'OrdenPedidoController@delete']);

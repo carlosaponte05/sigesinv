@@ -124,6 +124,29 @@
      @endif 
 
 <!-- fin orden de compra-->
+<!-- Ordenes de Pedido -->
+@if (\Sentinel::getUser()->roles()->first()->hasAccess(['orden_pedido.view'])) 
+    <li class="treeview {{ Request::is('admin/orden_pedido*') ? 'active':'' }}">
+      <a href="#">
+        <i class="fa fa-users"></i> <span>Orden de Pedido</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      </a>
+      <ul class="treeview-menu">
+         @if (\Sentinel::getUser()->roles()->first()->hasAccess(['orden_pedido.view'])==1) 
+          <li class="{{ Request::is('admin/orden_pedido/lista') ? 'active':'' }}"><a href="{{ url('admin/orden_pedido/lista') }}"><i class="fa fa-users"></i>Listar</a></li>
+         @endif 
+
+         @if (\Sentinel::getUser()->roles()->first()->hasAccess(['materiales.create'])==1) 
+          <li class="{{ Request::is('admin/orden_pedido/create') ? 'active':'' }}"><a href="{{ url('admin/orden_pedido/create') }}"><i class="fa fa-user-plus"></i>Crear Orden</a></li>
+         @endif 
+        
+      </ul>
+    </li>
+     @endif 
+
+<!-- fin orden de pedido-->
     @if (isGod(\Sentinel::check()->id)) 
     <li class="treeview {{ Request::is('admin/role*') ? 'active':'' }}">
       <a href="#">
