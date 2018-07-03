@@ -19,6 +19,7 @@ class CreateProveedoresTable extends Migration
             $table->string('rif',255);
             $table->string('telefono',255);
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

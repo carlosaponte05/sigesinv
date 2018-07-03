@@ -22,6 +22,7 @@ class CreateMaterialesCompraTable extends Migration
             $table->foreign('id_ordenc')->references('id')->on('orden_compra')->onDelete('cascade');
             $table->foreign('id_material')->references('id')->on('materiales')->onDelete('cascade');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

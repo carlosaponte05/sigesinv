@@ -62,30 +62,30 @@
                                 {{ csrf_field() }}
                                 
                                 <div class="form-group">
-                                  <a class="btn btn-circle btn-success" title="Presione aquí para aprobar la Orden de compra" href='{{ url('/admin/orden_compra/'.$key->id.'/aprobar') }}'" title="Ver">
+                                  <a class="btn btn-circle btn-success" title="Presione aquí para aprobar la Orden de compra" href="{{ url('/admin/orden_compra/'.$key->id.'/aprobar') }}" title="Ver">
                                     <i class="fa fa-check" ></i>
                                   </a>
                                 </div>
-                              </form>
-                            </div>
                           @endif
                       @if(\Sentinel::getUser()->roles()->first()->hasAccess(['orden_compra.ejecutar'])==1 && $key->estado=="Aprobada")
                                 {{ csrf_field() }}
                                 
                                 <div class="form-group">
-                                  <a class="btn btn-circle btn-warning" title="Presione para cambiar a ejecutada la Orden de compra" href='{{ url('/admin/orden_compra/'.$key->id.'/ejecutar') }}'" title="Ver">
+                                  <a class="btn btn-circle btn-warning" title="Presione para cambiar a ejecutada la Orden de compra" href="{{ url('/admin/orden_compra/'.$key->id.'/ejecutar') }}" title="Ver">
                                     <i class="fa fa-check-circle" ></i>
                                   </a>
+                                  <a href="{{ url('/admin/orden_compra/pdf/reporte/'.$key->id) }}" class="btn btn-circle btn-info">
+                                    <i class="fa fa-file-pdf-o"></i>
+                                  </a>
                                 </div>
-                              </form>
-                            </div>
+
                           @endif
                     </td>
                     <td class="text-center col-md-3" style="display: inline;">
                         <div class="form-inline">
                           @if (\Sentinel::getUser()->roles()->first()->hasAccess(['orden_compra.update'])==1)
                           <div class="form-group">
-                            <a class="btn btn-circle btn-primary" href='{{ url('/admin/orden_compra/'.$key->id.'/edit') }}'" title="Edit">
+                            <a class="btn btn-circle btn-primary" href="{{ url('/admin/orden_compra/'.$key->id.'/edit') }}" title="Edit">
                               <i class="fa fa-edit"></i>
                             </a>
                           </div>
@@ -101,8 +101,6 @@
                                     <i class="fa fa-eye"></i>
                                   </a>
                                 </div>
-                              </form>
-                            </div>
                           @endif
 
                           @if (\Sentinel::getUser()->roles()->first()->hasAccess(['orden_compra.delete'])==1 && $key->estado=="Sin Aprobar")
@@ -113,6 +111,7 @@
                               <form class="form frmDelete" id="Form" role="form" method="POST" 
                               action="{{ url('admin/orden_compra/'. $key->id) }}">
                                 <input type="hidden" name="_method" value="delete">
+                              </form>
                               @endif
                       </div>
                     </td>

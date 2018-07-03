@@ -71,3 +71,7 @@ Route::get('admin/orden_pedido/{id}/show',['as' => 'admin.orden_pedido.show', 'u
 Route::get('admin/orden_pedido/{id}/aprobar',['as' => 'admin.orden_pedido.aprobar', 'uses' => 'OrdenPedidoController@aprobar']);
 Route::get('admin/orden_pedido/{id}/ejecutar',['as' => 'admin.orden_pedido.ejecutar', 'uses' => 'OrdenPedidoController@ejecutar']);
 Route::post('admin/orden_pedido/{id}',['as' => 'admin.orden_pedido.delete', 'uses' => 'OrdenPedidoController@delete']);
+//REPORTE DE ORDEN DE COMPRA
+Route::get('admin/orden_compra/pdf/reporte/{id}',['as' => 'orden_compra.pdf.reporte', 'uses' => 'OrdenCompraController@reporte']);
+//REPORTE DE ORDEN DE PEDIDO
+Route::get('admin/orden_pedido/pdf/reporte/{id}',['as' => 'orden_pedido.pdf.reporte', 'uses' => 'OrdenPedidoController@reporte']);

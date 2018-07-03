@@ -64,8 +64,6 @@
                                     <i class="fa fa-check" ></i>
                                   </a>
                                 </div>
-                              </form>
-                            </div>
                           @endif
                       @if(\Sentinel::getUser()->roles()->first()->hasAccess(['orden_pedido.ejecutar'])==1 && $key->estado=="Aprobada")
                                 {{ csrf_field() }}
@@ -74,9 +72,10 @@
                                   <a class="btn btn-circle btn-warning" title="Presione para cambiar a ejecutada la Orden de Pedido" href='{{ url('/admin/orden_pedido/'.$key->id.'/ejecutar') }}'" title="Ver">
                                     <i class="fa fa-check-circle" ></i>
                                   </a>
+                                  <a href="{{ url('/admin/orden_pedido/pdf/reporte/'.$key->id) }}" class="btn btn-circle btn-info">
+                                    <i class="fa fa-file-pdf-o"></i>
+                                  </a>
                                 </div>
-                              </form>
-                            </div>
                           @endif
                     </td>
                     <td class="text-center col-md-3" style="display: inline;">
@@ -99,8 +98,6 @@
                                     <i class="fa fa-eye"></i>
                                   </a>
                                 </div>
-                              </form>
-                            </div>
                           @endif
 
                           @if (\Sentinel::getUser()->roles()->first()->hasAccess(['orden_pedido.delete'])==1 && $key->estado=="Sin Aprobar")
@@ -111,6 +108,7 @@
                               <form class="form frmDelete" id="Form" role="form" method="POST" 
                               action="{{ url('admin/orden_pedido/'. $key->id) }}">
                                 <input type="hidden" name="_method" value="delete">
+                              </form>
                               @endif
                       </div>
                     </td>

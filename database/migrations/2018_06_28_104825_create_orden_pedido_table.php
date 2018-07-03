@@ -20,6 +20,7 @@ class CreateOrdenPedidoTable extends Migration
             $table->enum('estado',['Sin Aprobar','Cancelada','Aprobada','Ejecutada']);
 
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

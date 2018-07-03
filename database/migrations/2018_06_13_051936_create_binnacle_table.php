@@ -18,7 +18,9 @@ class CreateBinnacleTable extends Migration
             $table->integer('id_usuario')->unsigned();
             $table->foreign('id_usuario')->references('id')->on('users')->onDelete('Cascade');
             $table->string('operacion');
+
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

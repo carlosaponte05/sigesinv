@@ -161,9 +161,18 @@ class OrdenPedidoController extends Controller
             
             
         }
+        
 
         return redirect()->back()->with('success', 'Orden de Pedido fué Ejecutada exitosamente, y actualizado el inventario!');
 
 
+    }
+    public function reporte($id)
+    {
+        $ordenc=OrdenPedido::find($id);
+
+        $pdf = \PDF::loadView('admin.ordenpedido.pdf.reporte', ['ordenp' => $ordenc]);
+
+        return $pdf->stream();
     }
 }

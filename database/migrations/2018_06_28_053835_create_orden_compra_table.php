@@ -22,6 +22,7 @@ class CreateOrdenCompraTable extends Migration
 
             $table->foreign('id_proveedor')->references('id')->on('proveedores')->onDelete('cascade');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

@@ -24,6 +24,7 @@ class CreateMaterialesTable extends Migration
             $table->integer('stock_min');
             $table->integer('stock_max');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

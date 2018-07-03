@@ -22,6 +22,7 @@ class CreateMaterialesPedidoTable extends Migration
             $table->foreign('id_ordenp')->references('id')->on('orden_pedido')->onDelete('cascade');
             $table->foreign('id_material')->references('id')->on('materiales')->onDelete('cascade');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

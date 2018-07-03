@@ -164,4 +164,13 @@ class OrdenCompraController extends Controller
 
 
     }
+
+    public function reporte($id)
+    {
+        $ordenc=OrdenCompra::find($id);
+
+        $pdf = \PDF::loadView('admin.ordencompra.pdf.reporte', ['ordenc' => $ordenc]);
+
+        return $pdf->stream();
+    }
 }

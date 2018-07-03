@@ -30,12 +30,30 @@ class MigrationCartalystSentinel extends Migration
      */
     public function up()
     {
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('email');
+            $table->string('password');
+            $table->text('permissions')->nullable();
+            $table->timestamp('last_login')->nullable();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('secret_question')->nullable();
+            $table->string('secret_answer')->nullable();
+            $table->timestamps();
+
+            $table->engine = 'InnoDB';
+            $table->unique('email');
+        });
+    
         Schema::create('activations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('code');
             $table->boolean('completed')->default(0);
             $table->timestamp('completed_at')->nullable();
+            
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
 
             $table->engine = 'InnoDB';
@@ -45,6 +63,8 @@ class MigrationCartalystSentinel extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('code');
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
 
             $table->engine = 'InnoDB';
@@ -57,7 +77,10 @@ class MigrationCartalystSentinel extends Migration
             $table->string('code');
             $table->boolean('completed')->default(0);
             $table->timestamp('completed_at')->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
 
         Schema::create('roles', function (Blueprint $table) {
@@ -74,6 +97,8 @@ class MigrationCartalystSentinel extends Migration
         Schema::create('role_users', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
             $table->integer('role_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->nullableTimestamps();
 
             $table->engine = 'InnoDB';
@@ -85,29 +110,14 @@ class MigrationCartalystSentinel extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->string('type');
             $table->string('ip')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
 
             $table->engine = 'InnoDB';
             $table->index('user_id');
         });
 
-        Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('email');
-            $table->string('password');
-            $table->text('permissions')->nullable();
-            $table->timestamp('last_login')->nullable();
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
-            $table->string('secret_question')->nullable();
-            $table->string('secret_answer')->nullable();
-            $table->timestamps();
-
-            $table->engine = 'InnoDB';
-            $table->unique('email');
-        });
-    }
-
+}
     /**
      * Reverse the migrations.
      *
